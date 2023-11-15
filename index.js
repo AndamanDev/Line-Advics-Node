@@ -28,17 +28,11 @@ const lineConfig = {
 
 const client = new line.Client(lineConfig);
 
-// app.post('/webhook', line.middleware(lineConfig), async (req , res) => {
-//     try {
-//         const events = req.body.events
-//         console.log('event=>>>' , events)
-//         return events.length > 0 ? await events.map(item => handleEvent(item)) : res.status(200).send('ok')
-//     } catch (error){
-//         res.status(500).end()
-//     }
-// });
+app.get("/", function (req, res) {
+  res.send("WORKING!!!");
+});
 
-app.post('/', line.middleware(lineConfig), async (req , res) => {
+app.post('/webhook', line.middleware(lineConfig), async (req , res) => {
     try {
         const events = req.body.events
         console.log('event=>>>' , events)
@@ -47,6 +41,7 @@ app.post('/', line.middleware(lineConfig), async (req , res) => {
         res.status(500).end()
     }
 });
+
 
 const handleEvent = async (event) => {
     
