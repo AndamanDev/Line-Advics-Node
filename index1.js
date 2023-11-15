@@ -18,7 +18,17 @@ const lineConfig = {
 
 const client = new line.Client(lineConfig);
 
-app.post('/webhook', line.middleware(lineConfig), async (req , res) => {
+// app.post('/webhook', line.middleware(lineConfig), async (req , res) => {
+//     try {
+//         const events = req.body.events
+//         console.log('event=>>>' , events)
+//         return events.length > 0 ? await events.map(item => handleEvent(item)) : res.status(200).send('ok')
+//     } catch (error){
+//         res.status(500).end()
+//     }
+// });
+
+app.post('/', line.middleware(lineConfig), async (req , res) => {
     try {
         const events = req.body.events
         console.log('event=>>>' , events)
