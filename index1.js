@@ -5,30 +5,16 @@ const dotenv = require('dotenv')
 const env = dotenv.config().parsed
 const app = express()
 
-// const lineConfig = {
-//     channelAccessToken: '9Ds7R0I1pKSkab037oxEbuAL+eb7gcgdssusMAtgBWlFTt73hErS2OeRBT1HRLEVGOMytOLoA3XfPuc4cUGeQXmqhnsKErRJIzohOAFVI36Z923KQDV/pQ3Ko6A4llWNL2mZIzmmxnHti6n359HB5wdB04t89/1O/w1cDnyilFU=',
-//     channelSecret: '57b3953866699e1f4ad136d1b8e6ddb7'
-// }
-
 const lineConfig = {
-    channelAccessToken: env.ACCESS_TOKEN , 
-    channelSecret: env.SECRET_TOKEN
+    channelAccessToken: '9Ds7R0I1pKSkab037oxEbuAL+eb7gcgdssusMAtgBWlFTt73hErS2OeRBT1HRLEVGOMytOLoA3XfPuc4cUGeQXmqhnsKErRJIzohOAFVI36Z923KQDV/pQ3Ko6A4llWNL2mZIzmmxnHti6n359HB5wdB04t89/1O/w1cDnyilFU=',
+    channelSecret: '57b3953866699e1f4ad136d1b8e6ddb7'
 }
+
 
 
 const client = new line.Client(lineConfig);
 
-// app.post('/webhook', line.middleware(lineConfig), async (req , res) => {
-//     try {
-//         const events = req.body.events
-//         console.log('event=>>>' , events)
-//         return events.length > 0 ? await events.map(item => handleEvent(item)) : res.status(200).send('ok')
-//     } catch (error){
-//         res.status(500).end()
-//     }
-// });
-
-app.post('/', line.middleware(lineConfig), async (req , res) => {
+app.post('/webhook', line.middleware(lineConfig), async (req , res) => {
     try {
         const events = req.body.events
         console.log('event=>>>' , events)
