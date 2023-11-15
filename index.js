@@ -15,14 +15,9 @@ const dotenv = require('dotenv')
 const env = dotenv.config().parsed
 const app = express()
 
-// const lineConfig = {
-//     channelAccessToken: '9Ds7R0I1pKSkab037oxEbuAL+eb7gcgdssusMAtgBWlFTt73hErS2OeRBT1HRLEVGOMytOLoA3XfPuc4cUGeQXmqhnsKErRJIzohOAFVI36Z923KQDV/pQ3Ko6A4llWNL2mZIzmmxnHti6n359HB5wdB04t89/1O/w1cDnyilFU=',
-//     channelSecret: '57b3953866699e1f4ad136d1b8e6ddb7'
-// }
-
 const lineConfig = {
-    channelAccessToken: env.ACCESS_TOKEN , 
-    channelSecret: env.SECRET_TOKEN
+    channelAccessToken: '9Ds7R0I1pKSkab037oxEbuAL+eb7gcgdssusMAtgBWlFTt73hErS2OeRBT1HRLEVGOMytOLoA3XfPuc4cUGeQXmqhnsKErRJIzohOAFVI36Z923KQDV/pQ3Ko6A4llWNL2mZIzmmxnHti6n359HB5wdB04t89/1O/w1cDnyilFU=',
+    channelSecret: '57b3953866699e1f4ad136d1b8e6ddb7'
 }
 
 
@@ -65,7 +60,7 @@ const handleEvent = async (event) => {
     }
 }
 
-app.listen(4040 , () => {
-    console.log('listening on 4040');
+app.listen(5000 , () => {
+    console.log('listening on 5000');
 });
 
