@@ -14,10 +14,6 @@ const lineConfig = {
 
 const client = new line.Client(lineConfig);
 
-app.get("/", (req, res) => {
-    res.json({ result: "OK", data: [1, 2, 3, 4, 5] });
-});
-
 app.post('/webhook', line.middleware(lineConfig), async (req , res) => {
     try {
         const events = req.body.events
