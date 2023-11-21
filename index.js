@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-const port = process.env.PORT || 4040
+const port = process.env.PORT || 4000
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.post('/webhook', (req, res) => {
@@ -27,11 +27,17 @@ function reply(reply_token) {
             text: 'How are you?'
         }]
     })
+    console.log('Requesting Line API...');
     request.post({
         url: 'https://api.line.me/v2/bot/message/reply',
         headers: headers,
         body: body
     }, (err, res, body) => {
-        console.log('status = ' + res.statusCode);
+        if (err) {
+            console.error('Error:', err);
+        } else {
+            console.log('Response status =', res.statusCode);
+            console.log('Response body =', body);
+        }
     });
 }
