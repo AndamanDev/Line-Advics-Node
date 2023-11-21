@@ -46,7 +46,7 @@ const handleEvent = async (event) => {
     }
 }
 
-app.listen(4040 , () => {
-    console.log('listening on 4040');
+app.listen(8080 , () => {
+    console.log('listening on 8080');
 });
 
