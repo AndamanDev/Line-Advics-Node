@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
     res.send('OK');
 });
 
-app.post('/webhook', (req, res) => {
+app.get('/webhook', (req, res) => {
     // let reply_token = req.body.events[0].replyToken
     // reply(reply_token)
     // res.sendStatus(200)
