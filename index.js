@@ -1,16 +1,27 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const request = require('request')
-const app = express()
-const port = process.env.PORT || 4000
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request');
+const app = express();
+const port = process.env.PORT || 4000;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Handle GET request at the root path
+app.get('/', (req, res) => {
+    res.send('OK');
+});
+
 app.post('/webhook', (req, res) => {
     let reply_token = req.body.events[0].replyToken
     reply(reply_token)
     res.sendStatus(200)
-})
-app.listen(port)
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
 function reply(reply_token) {
     let headers = {
         'Content-Type': 'application/json',
