@@ -13,10 +13,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/webhook', (req, res) => {
-    // let reply_token = req.body.events[0].replyToken
-    // reply(reply_token)
-    // res.sendStatus(200)
-    res.send('OK webhook');
+    let reply_token = req.body.events[0].replyToken
+    reply(reply_token)
+    res.sendStatus(200)
 });
 
 app.listen(port, () => {
