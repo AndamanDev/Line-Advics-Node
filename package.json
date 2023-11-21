@@ -16,7 +16,6 @@
   "name": "line-advics-node",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AndamanDev/Line-Advics-Node.git"
