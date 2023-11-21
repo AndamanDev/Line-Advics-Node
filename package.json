@@ -12,5 +12,20 @@
   "engines": {
     "node": "18.16.1",
     "npm": "9.5.1"
-  }
+  },
+  "name": "line-advics-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndamanDev/Line-Advics-Node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndamanDev/Line-Advics-Node/issues"
+  },
+  "homepage": "https://github.com/AndamanDev/Line-Advics-Node#readme",
+  "description": ""
 }
