@@ -10,8 +10,6 @@ const lineConfig = {
     channelSecret: '57b3953866699e1f4ad136d1b8e6ddb7'
 }
 
-
-
 const client = new line.Client(lineConfig);
 
 app.post('/webhook', line.middleware(lineConfig), async (req , res) => {
@@ -26,24 +24,24 @@ app.post('/webhook', line.middleware(lineConfig), async (req , res) => {
 
 const handleEvent = async (event) => {
     
-    if (event.type === 'message' && (event.message.text === 'พนักงาน Advisc' || event.message.text === 'ผู้มาติดต่อ')) {
-        const { data } = await axios.get('https://${env.RAPID_URL}/words/${event.message.text}/synonyms' , {
-            headers: { 
-                'x-rapiddapi-host': env.RAPID_URLM ,
-                'x-rapiddapi-key': env.RAPID_KEY
-            } 
-        })
-        const { synonyms } = data
-        let str = ''
+    // if (event.type === 'message' && (event.message.text === 'พนักงาน Advisc' || event.message.text === 'ผู้มาติดต่อ')) {
+    //     const { data } = await axios.get('https://${env.RAPID_URL}/words/${event.message.text}/synonyms' , {
+    //         headers: { 
+    //             'x-rapiddapi-host': env.RAPID_URLM ,
+    //             'x-rapiddapi-key': env.RAPID_KEY
+    //         } 
+    //     })
+    //     const { synonyms } = data
+    //     let str = ''
 
         if (event.message.text === 'พนักงาน Advisc') {
             return client.replyMessage(event.replyToken, { type: 'text', text: 'กำลัลงลิงก์ไปยัง หน้า Advics' });
         } else if (event.message.text === 'ผู้มาติดต่อ') {
             return client.replyMessage(event.replyToken, { type: 'text', text: 'กำลังส่งไปยังลิงก์ปลายทาง' });
         }
-    } else {
-        return client.replyMessage(event.replyToken, { type: 'text', text: 'กรุณารอเจ้าหน้าที่ตอบกลับ' });
-    }
+    // } else {
+    //     return client.replyMessage(event.replyToken, { type: 'text', text: 'กรุณารอเจ้าหน้าที่ตอบกลับ' });
+    // }
 }
 
 app.listen(8080 , () => {
