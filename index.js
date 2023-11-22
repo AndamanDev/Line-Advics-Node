@@ -6,7 +6,7 @@ const env = dotenv.config().parsed
 const app = express()
 
 const lineConfig = {
-    channelAccessToken: '9Ds7R0I1pKSkab037oxEbuAL+eb7gcgdssusMAtgBWlFTt73hErS2OeRBT1HRLEVGOMytOLoA3XfPuc4cUGeQXmqhnsKErRJIzohOAFVI36Z923KQDV/pQ3Ko6A4llWNL2mZIzmmxnHti6n359HB5wdB04t89/1O/w1cDnyilFU=',
+    channelAccessToken: '37vAy1tI5xYwMV/B5dqYYrj/GQOeAMOPMSdvI7x8gFT+K0QI4hpUbM00Am7QbpkPGOMytOLoA3XfPuc4cUGeQXmqhnsKErRJIzohOAFVI36067hsjRpWwWPYtq014lJZGjKrLCIy48Zf8FBoJfoftAdB04t89/1O/w1cDnyilFU=',
     channelSecret: '57b3953866699e1f4ad136d1b8e6ddb7'
 }
 
@@ -23,11 +23,11 @@ app.post('/webhook', line.middleware(lineConfig), async (req , res) => {
 });
 
 const handleEvent = async (event) => {
+    console.log(event);
     return client.replyMessage(event.replyToken, { type: 'text', text: 'กรุณารอเจ้าหน้าที่ตอบกลับ' });
 }
 
 app.listen(4000 , () => {
     console.log('listening on 4000');
 });
-
 
