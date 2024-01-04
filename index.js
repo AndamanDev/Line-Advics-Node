@@ -49,48 +49,50 @@ const handleEvent = async (event) => {
       });
     }
   } else {
-    // Send Flex Message
-    const flexMessage = {
-      type: "flex",
-      altText: "This is a Flex Message",
-      contents: {
-        type: "carousel",
-        contents: [
-          {
-            type: "bubble",
-            body: {
-              type: "box",
-              layout: "horizontal",
-              contents: [
-                {
-                  type: "text",
-                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                  wrap: true,
-                },
-              ],
-            },
-            footer: {
-              type: "box",
-              layout: "horizontal",
-              contents: [
-                {
-                  type: "button",
-                  style: "primary",
-                  action: {
-                    type: "uri",
-                    label: "Go",
-                    uri: "https://example.com",
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    };
-
-    // Send the Flex Message
-    return client.replyMessage(event.replyToken, flexMessage);
+    const userId = event.source.userId;
+    await client.replyMessage(event.replyToken, {
+      type: "text",
+      text: `Line UID ของคุณคือ: ${userId}`,
+    });
+    // const flexMessage = {
+    //   type: "flex",
+    //   altText: "This is a Flex Message",
+    //   contents: {
+    //     type: "carousel",
+    //     contents: [
+    //       {
+    //         type: "bubble",
+    //         body: {
+    //           type: "box",
+    //           layout: "horizontal",
+    //           contents: [
+    //             {
+    //               type: "text",
+    //               text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    //               wrap: true,
+    //             },
+    //           ],
+    //         },
+    //         footer: {
+    //           type: "box",
+    //           layout: "horizontal",
+    //           contents: [
+    //             {
+    //               type: "button",
+    //               style: "primary",
+    //               action: {
+    //                 type: "uri",
+    //                 label: "Go",
+    //                 uri: "https://example.com",
+    //               },
+    //             },
+    //           ],
+    //         },
+    //       },
+    //     ],
+    //   },
+    // };
+    // return client.replyMessage(event.replyToken, flexMessage);
   }
 };
 
