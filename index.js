@@ -26,12 +26,18 @@ app.post("/webhook", line.middleware(lineConfig), async (req, res) => {
   }
 });
 
-const userId = event.source.userId;
-
 const handleEvent = async (event) => {
-  return client.replyMessage(event.replyToken, {
+  // ส่งข้อความไปยังผู้ใช้
+  await client.replyMessage(event.replyToken, {
     type: "text",
-    text: "กรุณารอเจ้าหน้าที่ตอบกลับ : ${userId}",
+    text: "กรุณารอเจ้าหน้าที่ตอบกลับ 5555555555555",
+  });
+
+  // ส่ง Line UID กลับมา
+  const userId = event.source.userId;
+  await client.replyMessage(event.replyToken, {
+    type: "text",
+    text: `Line UID ของคุณคือ: ${userId}`,
   });
 };
 
