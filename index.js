@@ -26,52 +26,94 @@ app.post("/webhook", line.middleware(lineConfig), async (req, res) => {
   }
 });
 
+// const handleEvent = async (event) => {
+//   const flexMessage = {
+//     type: "flex",
+//     altText: "This is a Flex Message",
+//     contents: {
+//       type: "bubble",
+//       body: {
+//         type: "box",
+//         layout: "vertical",
+//         contents: [
+//           {
+//             type: "text",
+//             text: "คุณต้องการนัดหมายหรือไม่?",
+//             wrap: true,
+//           },
+//         ],
+//       },
+//       footer: {
+//         type: "box",
+//         layout: "horizontal",
+//         contents: [
+//           {
+//             type: "button",
+//             style: "primary",
+//             action: {
+//               type: "uri",
+//               label: "นัดหมาย",
+//               uri: `https://advicsvms.andamandev.com/api/v1/apt/go-to-apt?user_line_id=${userId}`,
+//             },
+//           },
+//         ],
+//       },
+//     },
+//   };
+//   return client.replyMessage(event.replyToken, flexMessage);
+// };
+
 const handleEvent = async (event) => {
-  //   return client.replyMessage(event.replyToken, {
-  //     type: "text",
-  //     text: "กรุณารอเจ้าหน้าที่ตอบกลับ",
-  //   });
-  //   const userId = event.source.userId;
-  //   return client.replyMessage(event.replyToken, {
-  //     type: "text",
-  //     text: `Line UID ของคุณคือ: ${userId}`,
-  //   });
+  const receivedText = event.message.text;
 
-  const flexMessage = {
-    type: "flex",
-    altText: "This is a Flex Message",
-    contents: {
-      type: "bubble",
-      body: {
-        type: "box",
-        layout: "vertical",
-        contents: [
-          {
-            type: "text",
-            text: "คุณต้องการนัดหมายหรือไม่?",
-            wrap: true,
-          },
-        ],
-      },
-      footer: {
-        type: "box",
-        layout: "horizontal",
-        contents: [
-          {
-            type: "button",
-            style: "primary",
-            action: {
-              type: "uri",
-              label: "นัดหมาย",
-              uri: `https://advicsvms.andamandev.com/api/v1/apt/go-to-apt?user_line_id=${userId}`,
+  let flexMessage;
+
+  if (receivedText === "บันทึกนัดหมาย") {
+    flexMessage = {
+      type: "flex",
+      altText: "This is a Flex Message for Appointment",
+      contents: {
+        type: "bubble",
+        body: {
+          type: "box",
+          layout: "vertical",
+          contents: [
+            {
+              type: "text",
+              text: "คุณต้องการนัดหมายหรือไม่?",
+              wrap: true,
             },
-          },
-        ],
+          ],
+        },
+        footer: {
+          type: "box",
+          layout: "horizontal",
+          contents: [
+            {
+              type: "button",
+              style: "primary",
+              action: {
+                type: "uri",
+                label: "นัดหมาย",
+                uri: `https://advicsvms.andamandev.com/api/v1/apt/go-to-apt?user_line_id=${userId}`,
+              },
+            },
+          ],
+        },
       },
-    },
-  };
+    };
+  } else if (receivedText === "ข้อมูลส่วนตัว") {
+    flexMessage = {
+      type: "text",
+      text: "ขอโทษครับ/ค่ะ ไม่เข้าใจคำสั่งที่ระบุ",
+    };
+  } else {
+    flexMessage = {
+      type: "text",
+      text: "ขอโทษครับ/ค่ะ ไม่เข้าใจคำสั่งที่ระบุ",
+    };
+  }
 
-  // Send the Flex Message
   return client.replyMessage(event.replyToken, flexMessage);
 };
 
