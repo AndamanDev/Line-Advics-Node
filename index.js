@@ -62,7 +62,7 @@ const handleEvent = async (event) => {
   } else {
     return client.replyMessage(event.replyToken, {
       type: "text",
-      text: "กรุณารอเจ้าหน้าที่ตอบกลับ",
+      text: "กรุณารอเจ้าหน้าที่ตอบกลับ5555555555555",
     });
   }
 };
