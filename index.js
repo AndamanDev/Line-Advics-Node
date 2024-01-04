@@ -65,13 +65,11 @@ app.post("/webhook", line.middleware(lineConfig), async (req, res) => {
 
 const handleEvent = async (event) => {
   const receivedText = event.message.text;
-
   let flexMessage;
-
   if (receivedText === "บันทึกนัดหมาย") {
     flexMessage = {
       type: "flex",
-      altText: "This is a Flex Message for Appointment",
+      altText: "This is a Flex Message",
       contents: {
         type: "bubble",
         body: {
