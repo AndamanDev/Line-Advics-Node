@@ -26,35 +26,13 @@ app.post("/webhook", line.middleware(lineConfig), async (req, res) => {
   }
 });
 
+const userId = event.source.userId;
+
 const handleEvent = async (event) => {
-  console.log(event);
-  if (
-    event.message.text === "พนักงาน Advisc" ||
-    event.message.text === "ผู้มาติดต่อ" ||
-    event.message.text === "บันทึกน้ดหมาย"
-  ) {
-    if (event.message.text === "พนักงาน Advisc") {
-      return client.replyMessage(event.replyToken, {
-        type: "text",
-        text: "กำลัลงลิงก์ไปยัง หน้า Advics",
-      });
-    } else if (event.message.text === "ผู้มาติดต่อ") {
-      return client.replyMessage(event.replyToken, {
-        type: "text",
-        text: "กำลังส่งไปยังลิงก์ปลายทาง",
-      });
-    } else if (event.message.text === "บันทึกน้ดหมาย") {
-      return client.replyMessage(event.replyToken, {
-        type: "text",
-        text: "บันทึกน้ดหมาย",
-      });
-    }
-  } else {
-    return client.replyMessage(event.replyToken, {
-      type: "text",
-      text: "กรุณารอเจ้าหน้าที่ตอบกลับ5555555555555",
-    });
-  }
+  return client.replyMessage(event.replyToken, {
+    type: "text",
+    text: "กรุณารอเจ้าหน้าที่ตอบกลับ : ${userId}",
+  });
 };
 
 app.listen(PORT, () => {
