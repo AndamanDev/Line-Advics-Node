@@ -66,6 +66,7 @@ app.post("/webhook", line.middleware(lineConfig), async (req, res) => {
 const handleEvent = async (event) => {
   const receivedText = event.message.text;
   let flexMessage;
+
   if (receivedText === "บันทึกนัดหมาย") {
     flexMessage = {
       type: "flex",
@@ -93,7 +94,7 @@ const handleEvent = async (event) => {
               action: {
                 type: "uri",
                 label: "นัดหมาย",
-                uri: `https://advicsvms.andamandev.com/api/v1/apt/go-to-apt?user_line_id=${userId}`,
+                uri: `https://advicsvms.andamandev.com/api/v1/apt/go-to-apt?user_line_id=${event.source.userId}`,
               },
             },
           ],
@@ -102,8 +103,12 @@ const handleEvent = async (event) => {
     };
   } else if (receivedText === "ข้อมูลส่วนตัว") {
     flexMessage = {
-      type: "text",
-      text: "ขอโทษครับ/ค่ะ ไม่เข้าใจคำสั่งที่ระบุ",
+      type: "flex",
+      altText: "This is a Flex Message for Personal Information",
+      contents: {
+        // กำหนดโครงสร้างของ Flex Message สำหรับข้อมูลส่วนตัวที่ต้องการแสดง
+        // ...
+      },
     };
   } else {
     flexMessage = {
