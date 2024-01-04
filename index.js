@@ -103,12 +103,8 @@ const handleEvent = async (event) => {
     };
   } else if (receivedText === "ข้อมูลส่วนตัว") {
     flexMessage = {
-      type: "flex",
-      altText: "This is a Flex Message for Personal Information",
-      contents: {
-        // กำหนดโครงสร้างของ Flex Message สำหรับข้อมูลส่วนตัวที่ต้องการแสดง
-        // ...
-      },
+      type: "text",
+      text: "ข้อมูลส่วนตัว",
     };
   } else {
     flexMessage = {
