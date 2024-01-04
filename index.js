@@ -50,7 +50,7 @@ const handleEvent = async (event) => {
     }
   } else {
     const userId = event.source.userId;
-    await client.replyMessage(event.replyToken, {
+    return client.replyMessage(event.replyToken, {
       type: "text",
       text: `Line UID ของคุณคือ: ${userId}`,
     });
