@@ -63,7 +63,7 @@ const handleEvent = async (event) => {
             action: {
               type: "uri",
               label: "นัดหมาย",
-              uri: "https://example.com/appointment",
+              uri: "https://advicsvms.andamandev.com/v1/apt/check-to-apt?user_line_id=${userId}",
             },
           },
         ],
