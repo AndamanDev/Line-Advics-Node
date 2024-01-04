@@ -53,6 +53,12 @@ const handleEvent = async (event) => {
     type: "text",
     text: "กรุณารอเจ้าหน้าที่ตอบกลับ5555555555555",
   });
+
+  // const userId = event.source.userId;
+  // await client.replyMessage(event.replyToken, {
+  //   type: "text",
+  //   text: `Line UID ของคุณคือ: ${userId}`,
+  // });
   //   }
 };
 

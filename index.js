@@ -49,18 +49,63 @@ const handleEvent = async (event) => {
       });
     }
   } else {
-    // return client.replyMessage(event.replyToken, {
-    //   type: "text",
-    //   text: "กรุณารอเจ้าหน้าที่ตอบกลับ5555555555555",
-    // });
+    // Send Flex Message
+    const flexMessage = {
+      type: "flex",
+      altText: "This is a Flex Message",
+      contents: {
+        type: "carousel",
+        contents: [
+          {
+            type: "bubble",
+            body: {
+              type: "box",
+              layout: "horizontal",
+              contents: [
+                {
+                  type: "text",
+                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                  wrap: true,
+                },
+              ],
+            },
+            footer: {
+              type: "box",
+              layout: "horizontal",
+              contents: [
+                {
+                  type: "button",
+                  style: "primary",
+                  action: {
+                    type: "uri",
+                    label: "Go",
+                    uri: "https://example.com",
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    };
 
-    const userId = event.source.userId;
-    await client.replyMessage(event.replyToken, {
-      type: "text",
-      text: `Line UID ของคุณคือ: ${userId}`,
-    });
+    // Send the Flex Message
+    await client.replyMessage(event.replyToken, flexMessage);
   }
 };
+
+// ตัวอย่างการใช้งาน
+const event = {
+  message: {
+    text: "คำที่ไม่ตรงเงื่อนไข",
+  },
+  replyToken: "reply_token_here",
+  source: {
+    userId: "user_id_here",
+  },
+};
+
+handleEvent(event);
 
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`);
