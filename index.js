@@ -90,7 +90,7 @@ const handleEvent = async (event) => {
     };
 
     // Send the Flex Message
-    await client.replyMessage(event.replyToken, flexMessage);
+    return client.replyMessage(event.replyToken, flexMessage);
   }
 };
 
