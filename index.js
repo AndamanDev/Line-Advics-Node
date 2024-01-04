@@ -29,20 +29,10 @@ app.post("/webhook", line.middleware(lineConfig), async (req, res) => {
 const handleEvent = async (event) => {
   console.log(event);
   if (
-    event.type === "message" &&
-    (event.message.text === "พนักงาน Advisc" ||
-      event.message.text === "ผู้มาติดต่อ" ||
-      event.message.text === "บันทึกน้ดหมาย")
+    event.message.text === "พนักงาน Advisc" ||
+    event.message.text === "ผู้มาติดต่อ" ||
+    event.message.text === "บันทึกน้ดหมาย"
   ) {
-    //     const { data } = await axios.get('https://${env.RAPID_URL}/words/${event.message.text}/synonyms' , {
-    //         headers: {
-    //             'x-rapiddapi-host': env.RAPID_URLM ,
-    //             'x-rapiddapi-key': env.RAPID_KEY
-    //         }
-    //     })
-    //     const { synonyms } = data
-    //     let str = ''
-
     if (event.message.text === "พนักงาน Advisc") {
       return client.replyMessage(event.replyToken, {
         type: "text",
