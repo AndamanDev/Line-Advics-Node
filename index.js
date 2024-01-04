@@ -27,87 +27,29 @@ app.post("/webhook", line.middleware(lineConfig), async (req, res) => {
 });
 
 const handleEvent = async (event) => {
-  if (
-    event.message.text === "พนักงาน Advisc" ||
-    event.message.text === "ผู้มาติดต่อ" ||
-    event.message.text === "บันทึกน้ดหมาย"
-  ) {
-    if (event.message.text === "พนักงาน Advisc") {
-      return client.replyMessage(event.replyToken, {
-        type: "text",
-        text: "กำลัลงลิงก์ไปยัง หน้า Advics",
-      });
-    } else if (event.message.text === "ผู้มาติดต่อ") {
-      return client.replyMessage(event.replyToken, {
-        type: "text",
-        text: "กำลังส่งไปยังลิงก์ปลายทาง",
-      });
-    } else if (event.message.text === "บันทึกน้ดหมาย") {
-      return client.replyMessage(event.replyToken, {
-        type: "text",
-        text: "บันทึกน้ดหมาย",
-      });
-    }
-  } else {
-    const userId = event.source.userId;
-    return client.replyMessage(event.replyToken, {
-      type: "text",
-      text: `Line UID ของคุณคือ: ${userId}`,
-    });
-    // const flexMessage = {
-    //   type: "flex",
-    //   altText: "This is a Flex Message",
-    //   contents: {
-    //     type: "carousel",
-    //     contents: [
-    //       {
-    //         type: "bubble",
-    //         body: {
-    //           type: "box",
-    //           layout: "horizontal",
-    //           contents: [
-    //             {
-    //               type: "text",
-    //               text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    //               wrap: true,
-    //             },
-    //           ],
-    //         },
-    //         footer: {
-    //           type: "box",
-    //           layout: "horizontal",
-    //           contents: [
-    //             {
-    //               type: "button",
-    //               style: "primary",
-    //               action: {
-    //                 type: "uri",
-    //                 label: "Go",
-    //                 uri: "https://example.com",
-    //               },
-    //             },
-    //           ],
-    //         },
-    //       },
-    //     ],
-    //   },
-    // };
-    // return client.replyMessage(event.replyToken, flexMessage);
-  }
-};
+  console.log(event);
+  // if (event.type === 'message' && (event.message.text === 'พนักงาน Advisc' || event.message.text === 'ผู้มาติดต่อ')) {
+  //     const { data } = await axios.get('https://${env.RAPID_URL}/words/${event.message.text}/synonyms' , {
+  //         headers: {
+  //             'x-rapiddapi-host': env.RAPID_URLM ,
+  //             'x-rapiddapi-key': env.RAPID_KEY
+  //         }
+  //     })
+  //     const { synonyms } = data
+  //     let str = ''
 
-// ตัวอย่างการใช้งาน
-const event = {
-  message: {
-    text: "คำที่ไม่ตรงเงื่อนไข",
-  },
-  replyToken: "reply_token_here",
-  source: {
-    userId: "user_id_here",
-  },
+  //     if (event.message.text === 'พนักงาน Advisc') {
+  //         return client.replyMessage(event.replyToken, { type: 'text', text: 'กำลัลงลิงก์ไปยัง หน้า Advics' });
+  //     } else if (event.message.text === 'ผู้มาติดต่อ') {
+  //         return client.replyMessage(event.replyToken, { type: 'text', text: 'กำลังส่งไปยังลิงก์ปลายทาง' });
+  //     }
+  // } else {
+  return client.replyMessage(event.replyToken, {
+    type: "text",
+    text: "กรุณารอเจ้าหน้าที่ตอบกลับ",
+  });
+  // }
 };
-
-handleEvent(event);
 
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`);
