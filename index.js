@@ -31,11 +31,48 @@ const handleEvent = async (event) => {
   //     type: "text",
   //     text: "กรุณารอเจ้าหน้าที่ตอบกลับ",
   //   });
-  const userId = event.source.userId;
-  return client.replyMessage(event.replyToken, {
-    type: "text",
-    text: `Line UID ของคุณคือ: ${userId}`,
-  });
+  //   const userId = event.source.userId;
+  //   return client.replyMessage(event.replyToken, {
+  //     type: "text",
+  //     text: `Line UID ของคุณคือ: ${userId}`,
+  //   });
+
+  const flexMessage = {
+    type: "flex",
+    altText: "This is a Flex Message",
+    contents: {
+      type: "bubble",
+      body: {
+        type: "box",
+        layout: "vertical",
+        contents: [
+          {
+            type: "text",
+            text: "คุณต้องการนัดหมายหรือไม่?",
+            wrap: true,
+          },
+        ],
+      },
+      footer: {
+        type: "box",
+        layout: "horizontal",
+        contents: [
+          {
+            type: "button",
+            style: "primary",
+            action: {
+              type: "uri",
+              label: "นัดหมาย",
+              uri: "https://example.com/appointment",
+            },
+          },
+        ],
+      },
+    },
+  };
+
+  // Send the Flex Message
+  return client.replyMessage(event.replyToken, flexMessage);
 };
 
 app.listen(PORT, () => {
